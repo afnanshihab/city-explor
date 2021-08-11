@@ -90,22 +90,15 @@ export class App extends Component {
     render() {
       return (
         <div>
-          <Container fluid style={{width:"20rem",marginTop:"3rem"}}>
-            <Row>
-              <Col>
-  
-                {this.state.desplyErr && <Alert  variant='danger'>
-                <span>{this.state.messg}</span>
-                </Alert>}
-              </Col>
-            </Row>
-          </Container>
+         
           <div style={{ display: "flex", justifyContent: "center", marginTop: "" }}>
-  
-  
-            <Form onSubmit={(e) => { this.submitHandler(e) }} style={{ display: "flex", alignItems: "flex-start" }}>
-              <Form.Group className="mb-3" controlId="formBasicEmail">
-                <Form.Control type="text" name='city' style={{ width: "" }} placeholder="Explore Citys" />
+          <div>
+          <h2 style={{ marginLeft: "00px" }} >City Explorer</h2>
+          </div>
+              
+            <Form onSubmit={(e) => { this.submitHandler(e) }} style={{ display: "flex", alignItems: "flex-start", alignItems: 'center' }}>
+              <Form.Group >
+                <Form.Control type="text" name='city' style={{ width: "200px" }} placeholder="Explore Citys" />
   
               </Form.Group>
               <Button style={{ paddingRight: "1rem" }} variant="primary" type="submit">
@@ -114,8 +107,8 @@ export class App extends Component {
             </Form>
           </div>
           <div style={{ display: "flex", justifyContent: "center" }}>
-            <Card style={{ width: '20rem', alignItems: 'center', height: '20rem', margin: '1rem ', border: "" }}>
-              <Card.Img variant="top" src={this.state.mapUrl} style={{ width: '20rem', height: "10rem" }} />
+            <Card style={{ width: '400px', alignItems: 'center', height: '600px', margin: '0rem ', border: "" }}>
+              <Card.Img variant="top" src={this.state.mapUrl} style={{ width: '400px', height: "400px" }} />
               <Card.Body>
                 <Card.Title style={{ color: "red" }}>{this.state.cityName}</Card.Title>
                 <Card.Text>
@@ -126,13 +119,25 @@ export class App extends Component {
                 <Card.Text>
                   {this.state.lon}
                 </Card.Text>
+                <Card.Text>
+                {this.state.weath && <>  {this.state.weath.map((ele) => {
+            return (<Weather dateOfCountry={ele.date} description={ele.description} />)
+          })} </>}
+                </Card.Text>
               </Card.Body>
             </Card>
           </div>
+          
+           <Container fluid style={{width:"20rem",marginTop:"3rem"}}>
+            <Row>
+              <Col>
   
-          {this.state.weath && <>  {this.state.weath.map((ele) => {
-            return (<Weather dateOfCountry={ele.date} description={ele.description} />)
-          })} </>}
+                {this.state.desplyErr && <Alert  variant='danger'>
+                <span>{this.state.messg}</span>
+                </Alert>}
+              </Col>
+            </Row>
+          </Container>
   
         </div>
       );
